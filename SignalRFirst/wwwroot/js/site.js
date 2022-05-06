@@ -49,7 +49,7 @@ function dragElement(elmnt) {
 }
 
 connection.on("ReceivePosition", function (left, top) {
-    console.log(left + " " + top);
+    //console.log(left + " " + top);
     document.getElementById("miDiv").style.top = top + "px";
     document.getElementById("miDiv").style.left = left + "px";
 })
