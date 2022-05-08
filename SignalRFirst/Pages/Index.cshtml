@@ -1,5 +1,7 @@
 ﻿@page
 
+
+
 <style>
     #miDiv{
         position: absolute;
@@ -19,6 +21,11 @@
     }
 </style>
 
+<div id ="header">
+    <label id="lblCounter"></label>
+    <label id="connectionId"></label>
+    <label id="created"></label>
+</div>
 <div id="miDiv">
   <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
   <div id="miDivCursor">Click here to move</div>
@@ -27,5 +34,8 @@
   <p>DIV</p>
 </div>
 
+
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/site.js"></script>
+
+

@@ -38,6 +38,8 @@ function dragElement(elmnt) {
             (elmnt.offsetLeft), (elmnt.offsetTop)).catch(function (err) {
                 return console.error(err.toString());
             });
+
+        
     }
 
     function closeDragElement() {
@@ -49,11 +51,36 @@ function dragElement(elmnt) {
 }
 
 connection.on("ReceivePosition", function (left, top) {
-    //console.log(left + " " + top);
+    //console.log(left + " " + top + " " + count);
     document.getElementById("miDiv").style.top = top + "px";
     document.getElementById("miDiv").style.left = left + "px";
 })
 
-connection.start().then(function () {
-    console.log("conectado");
+connection.on("ReceiveConnectedClients", function (count) {
+    //console.log(count);
+    document.getElementById("lblCounter").innerHTML = "Cant. Usuarios: " + count
 })
+
+connection.on("ReceiveConnectionId", function (connectionId) {
+    //console.log(count);
+    document.getElementById("connectionId").innerHTML = "ConnectionId: " + connectionId
+
+    connection.invoke("ValidateClient",
+        connectionId).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+})
+
+connection.start();
+if (document.getElementById("created").innerHTML == ".") {
+    
+    console.log("conectado");
+}
+
+document.getElementById("created").innerHTML = ".";
+
+
+//connection.start().then(function () {
+//    console.log("conectado");
+//})
